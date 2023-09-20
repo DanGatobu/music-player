@@ -1,0 +1,5 @@
+ECHO is on.
+# Ignore the media folder and its contents
+/media/
+/images/
+/audio/

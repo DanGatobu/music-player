@@ -1,0 +1,59 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block links%}{%endblock%}
+{%block title%}homepage{% endblock %}
+{%block body%}
+
+<div class="col">
+    <div class="col-lg-4 d-none d-lg-block">
+        <div class="card">
+            <img
+                src="{% static 'images/myturn.jpg' %}"
+                class="card-img-top"
+                alt="Sunset Over the Sea"
+            />
+            {{link}}
+            <div class="card-body">
+                <h5 class="card-title">{{songs.name}}ll{{link}}</h5>
+                <h5 class="card-title">{{songs.album}}ll</h5>
+                <h5 class="card-title">{{songs.artist}}ll</h5>
+                <h5 class="card-title">{{songs.length}}ll</h5>
+                <audio controls>
+                    <source src="{{link}}" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            {% if not songs.favorite_bool %}
+                <form action="{% url 'songs' %}" method="post">
+
+                    {% csrf_token %}
+
+                    <input type="hidden" name="songid" value="{{songs.id}}" >
+                    <button type="submit"><img src="{% static 'images/like.png' %}" alt=""></button>
+                </form>
+            {% elif songs.favorire_bool %}
+                <a href="{%url 'favorites'%}"><img src="{% static 'images/lovered.png' %}" alt=""></a>
+            {% endif %}
+                <form action="{% url 'addtoplaylist' %}" method="post">
+
+              {% csrf_token %}
+
+                    <input type="hidden" name="songid" value="{{songs.id}}" >
+                    <button type="submit"><img src="" alt="">Add To playlist</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="audio-player">
+    <h2>Local Songs</h2>
+    {% for song in songs %}
+    <audio controls>
+      <source src="{{ song.file_path }}" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    {% endfor %}
+  </div>
+
+{%endblock%}

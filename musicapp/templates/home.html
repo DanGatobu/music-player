@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block links%} <link href="{% static 'css/home.css'%}" rel="icon">{%endblock%}
+{%block title%}homepage{% endblock %}
+{%block body%}
+
+<section class="px-5 py-6 py-xxl-10 hcf-bp-center hcf-bs-cover hcf-overlay hcf-transform" style="background-image: url('');">
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-md-11 col-lg-9 col-xl-7 col-xxl-6 text-center text-white">
+          <h1 class="display-3 fw-bold mb-3"></h1>
+          <p class="lead mb-5"></p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <audio controls>
+              <source src="/media/{{song.link}}" type="audio/mp3">
+              Your browser does not support the audio element.
+            </audio>
+           
+            <button type="button" class="btn btn-light btn-lg px-4 gap-3">Free Consultation</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <embed src="/media/{{song.link}}" type="">
+    <p><link rel="stylesheet" href="/media/{{song.link}}"> {{song.link}}</p>
+{%endblock%}

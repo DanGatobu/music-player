@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block links%}{%endblock%}
+{%block title%}homepage{% endblock %}
+{%block body%}
+
+{% for album in albums %} 
+            <div class="col">
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="card">
+                        <img
+                        src="{% static 'images/playlist2.jpg' %}"
+                        class="card-img-top"
+                        alt="Sunset Over the Sea"
+                        />
+                          <div class="card-body">
+                            <h5 class="card-title">{{album.album}}</h5>
+                            <form action="{% url 'albumsongs' %}" method="post">
+    
+                            {% csrf_token %}
+    
+                                <input type="hidden" name="albumname" value="{{album.album}}" >
+                                <button type="submit"><img src="" alt="">Listen</button>
+                            </form>
+                        </div>
+                    </div>
+                  </div>
+                 
+            </div>
+{% endfor %}
+
+
+{%endblock%}

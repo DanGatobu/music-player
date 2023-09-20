@@ -1,0 +1,181 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{%block links%}{%endblock%}
+{%block title%}homepage{% endblock %}
+{%block body%}
+
+{% for songs in favor %} 
+    
+            <div class="col">
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="card">
+                    {% if songs.song.album == "My Turn (Deluxe)" %}
+                      <img
+                        src="{% static 'images/myturn.jpg' %}"
+                        class="card-img-top"
+                        alt="Sunset Over the Sea"
+                      />
+                    {% elif songs.song.album == "Apple The 100 Best Songs of 2020" %}
+                    <img
+                    src="{% static 'images/2020best.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Free Dem Boyz" %}
+                    <img
+                    src="{% static 'images/42dugg.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Meet The Woo 2" %}
+                    <img
+                    src="{% static 'images/smoke.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Billboard 2019 Year-End Hot 100 Songs" %}
+                    <img
+                    src="{% static 'images/bill100.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Whole Lotta Red" %}
+                    <img
+                    src="{% static 'images/playboy.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Music To Be Murdered By" %}
+                    <img
+                    src="{% static 'images/eminem.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "The Voice of the Heroes" %}
+                    <img
+                    src="{% static 'images/voice.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Memories...Do Not Open" %}
+                    <img
+                    src="{% static 'images/memories.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Sick Boy" %}
+                    <img
+                    src="{% static 'images/sickboy.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Culture III" %}
+                    <img
+                    src="{% static 'images/culture3.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "The Voice" %}
+                    <img
+                    src="{% static 'images/durkvoice.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "poetry" %}
+                    <img
+                    src="{% static 'images/myturn.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "These Things Happen Too (Deluxe)" %}
+                    <img
+                    src="{% static 'images/geasy.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Destined 2 Win" %}
+                    <img
+                    src="{% static 'images/tjay.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Culture" %}
+                    <img
+                    src="{% static 'images/culture.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "American Teen" %}
+                    <img
+                    src="{% static 'images/khalid.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Hall of Fame" %}
+                    <img
+                    src="{% static 'images/hall.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "WUNNA" %}
+                    <img
+                    src="{% static 'images/wunna.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Eternal Atake" %}
+                    <img
+                    src="{% static 'images/uzi.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% elif songs.song.album == "Kids in Love" %}
+                    <img
+                    src="{% static 'images/kygo.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% else %}
+                    <img
+                    src="{% static 'images/basepic.jpg' %}"
+                    class="card-img-top"
+                    alt="Sunset Over the Sea"
+                    />
+                    {% endif %}
+                      <div class="card-body">
+                        <h5 class="card-title">{{songs.song.name}}</h5>
+                        <h5 class="card-title">{{songs.song.album}}</h5>
+                        <h5 class="card-title">{{songs.song.artist}}</h5>
+                        <h5 class="card-title">{{songs.song.length}}</h5>
+                        <audio controls>
+                            <source src="/media/{{songs.song.link}}" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio>
+                        {% if not songs.song.favorite_bool %}
+                        <form action="{% url 'songs' %}" method="post">
+
+                        {% csrf_token %}
+
+                            <input type="hidden" name="songid" value="{{songs.song.id}}" >
+                            <button type="submit"><img src="{% static 'images/like.png' %}" alt=""></button>
+                        </form>
+                        
+                        {% endif %}
+                        <form action="{% url 'deletelike' %}" method="post">
+
+                          {% csrf_token %}
+  
+                              <input type="hidden" name="songid" value="{{songs.id}}" >
+                              <button type="submit"><img src="" alt="">Remove</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                 
+            </div>
+     
+{% endfor %}
+
+
+{%endblock%}

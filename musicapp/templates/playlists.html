@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block links%}{%endblock%}
+{%block title%}homepage{% endblock %}
+{%block body%}
+
+{%for playlist in play %}
+<div class="col">
+    <div class="col-lg-4 d-none d-lg-block">
+        <div class="card">
+            <img
+            src="{% static 'playlist.jpg' %}"
+            class="card-img-top"
+            alt="Sunset Over the Sea"
+            />
+    
+              <div class="card-body">
+                <h5 class="card-title">{{playlist.name}}</h5>
+                <audio controls>
+                    <source src="/media/{{songs.song.link}}" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+                <form action="{% url 'playlists' %}" method="post">
+
+                {% csrf_token %}
+
+                    <input type="hidden" name="name" value="{{playlist.name}}" >
+                    <button type="submit"><img src="" alt="">LISTEN</button>
+                </form>
+            
+              </div>
+            </div>
+          </div>
+         
+    </div>
+{% endfor %}
+
+{%endblock%}

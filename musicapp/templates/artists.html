@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block links%}{%endblock%}
+{%block title%}homepage{% endblock %}
+{%block body%}
+
+{% for artists in artist %} 
+            <div class="col">
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="card">
+                        <img
+                        src="{% static 'images/playlist3.jpg' %}"
+                        class="card-img-top"
+                        alt="Sunset Over the Sea"
+                        />
+    
+                          <div class="card-body">
+                            <h5 class="card-title">{{artists.artist}}</h5>
+                            
+                            <form action="{% url 'artistsongs' %}" method="post">
+    
+                                {% csrf_token %}
+    
+                                <input type="hidden" name="artistname" value="{{artists.artist}}" >
+                                <button type="submit"><img src="" alt="">Listen</button>
+                            </form>
+                        </div>
+                    </div>
+                  </div>
+                 
+            </div>
+{% endfor %}
+
+
+{%endblock%}

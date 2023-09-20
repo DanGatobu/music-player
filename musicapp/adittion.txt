@@ -1,0 +1,39 @@
+  # # musicbn=writebinary(links)
+
+
+  for links in pathss:
+    # print(type(links))
+    # print(links)
+        
+            # neww=MP3(links)
+        
+            
+            # def printbinary():
+            #     for data in binary_data:
+                    
+            #         print(data)
+            # thread=threading.Thread(target=printbinary)
+            # thread.start()
+                
+                # filename = f"{title}-{artist}.mp3"
+                # file_path = os.path.join(musicdir, filename)
+
+                # # with open((str(title)+'binary'), 'wb') as music_file:
+                # #     music_file.write(binary_data[0])
+                # #     music_file.close()
+                    
+                # #     storedatabase=[os.path.abspath((str(title)+'binary'))]
+                # #     for st in storedatabase:
+            
+                # ssong.objects.create(name=title,album=album,artist=artist,length=duration,link=links)
+                # #         pass
+                # print('successfully created')
+    
+
+
+  {% endfor %{% endfor %}
+
+   <a href="{% url 'like' songs.id %}"><img src="{% static 'images/lovered.jpg' %}" alt=""></a>
+
+   {% elif songs.audio.favorire_bool %}
+                            <a href="{%url 'favorites'%}"><img src="{% static 'images/lovered.png' %}" alt=""></a>
